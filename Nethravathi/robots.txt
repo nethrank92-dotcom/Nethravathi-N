@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nethravathi.github.io/sitemap.xml

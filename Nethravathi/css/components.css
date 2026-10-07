@@ -1,0 +1,593 @@
+/* ==========================================================================
+   EDITORIAL COMPONENTS & UI ELEMENTS
+   MUΣE Editorial Visual Language
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Paper Grain Overlay
+   -------------------------------------------------------------------------- */
+.paper-texture {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   Custom Editorial Cursor (Optional Desktop Enhancement)
+   -------------------------------------------------------------------------- */
+.custom-cursor {
+  width: 10px;
+  height: 10px;
+  background: var(--ink-primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.15s ease-out, background-color 0.2s ease, width 0.2s ease, height 0.2s ease;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor-follower {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--accent-gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Editorial Barcodes & Serial Markers
+   -------------------------------------------------------------------------- */
+.barcode-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+  opacity: 0.85;
+}
+
+.barcode-svg {
+  height: 32px;
+  width: 140px;
+  fill: currentColor;
+}
+
+.barcode-subtext {
+  font-family: var(--font-mono-code);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: inherit;
+  opacity: 0.75;
+}
+
+/* --------------------------------------------------------------------------
+   Editorial Badges, Stamps & Seals
+   -------------------------------------------------------------------------- */
+.editorial-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  font-family: var(--font-mono-code);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-editorial);
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius-xs);
+  color: var(--ink-primary);
+  transition: all var(--transition-fast);
+}
+
+.editorial-badge:hover {
+  border-color: var(--accent-gold);
+  color: var(--ink-gold);
+}
+
+.editorial-badge.gold-accent {
+  border-color: var(--accent-gold);
+  color: var(--ink-gold);
+  background-color: var(--bg-tint-gold);
+}
+
+.editorial-badge.dark-badge {
+  border-color: var(--bg-dark-border);
+  background-color: rgba(20, 28, 45, 0.7);
+  color: var(--text-dark-secondary);
+}
+
+.editorial-seal {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px dashed var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px;
+  position: relative;
+  animation: rotateSeal 25s linear infinite;
+}
+
+.editorial-seal-inner {
+  font-family: var(--font-serif-accent);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-bronze);
+  line-height: 1.2;
+}
+
+@keyframes rotateSeal {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   Geometric Frames, Concentric Circles & Botanical Line Art
+   -------------------------------------------------------------------------- */
+.geometric-circle-frame {
+  position: absolute;
+  border: 1px solid var(--border-gold);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.botanical-accent {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.75;
+  stroke: var(--accent-gold);
+  fill: none;
+  stroke-width: 1.2;
+  transition: opacity var(--transition-smooth);
+}
+
+.concentric-rings {
+  position: relative;
+  display: inline-block;
+}
+
+.concentric-rings::before,
+.concentric-rings::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid var(--border-gold);
+  pointer-events: none;
+}
+
+.concentric-rings::before {
+  width: 115%;
+  height: 115%;
+  opacity: 0.6;
+}
+
+.concentric-rings::after {
+  width: 130%;
+  height: 130%;
+  opacity: 0.3;
+  border-style: dashed;
+}
+
+/* --------------------------------------------------------------------------
+   Editorial Buttons
+   -------------------------------------------------------------------------- */
+.btn-editorial {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 0.9rem 2rem;
+  font-family: var(--font-sans-editorial);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-none);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+}
+
+.btn-editorial-primary {
+  background-color: var(--ink-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--ink-primary);
+}
+
+.btn-editorial-primary:hover {
+  background-color: var(--accent-gold-dark);
+  border-color: var(--accent-gold-dark);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-2px);
+}
+
+.btn-editorial-outline {
+  background-color: transparent;
+  color: var(--ink-primary);
+  border: 1px solid var(--ink-primary);
+}
+
+.btn-editorial-outline:hover {
+  background-color: var(--ink-primary);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+}
+
+.btn-editorial-gold {
+  background-color: var(--accent-gold);
+  color: #0A0E17;
+  border: 1px solid var(--accent-gold);
+  font-weight: 700;
+}
+
+.btn-editorial-gold:hover {
+  background-color: #DFC28A;
+  border-color: #DFC28A;
+  box-shadow: var(--shadow-gold-glow);
+  transform: translateY(-2px);
+}
+
+.btn-editorial-dark-outline {
+  background-color: transparent;
+  color: var(--text-dark-primary);
+  border: 1px solid var(--bg-dark-border);
+}
+
+.btn-editorial-dark-outline:hover {
+  background-color: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: #0A0E17;
+  box-shadow: var(--shadow-gold-glow);
+  transform: translateY(-2px);
+}
+
+.btn-arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.btn-editorial:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   Editorial Cards
+   -------------------------------------------------------------------------- */
+.editorial-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-editorial);
+  padding: var(--space-xl);
+  position: relative;
+  box-shadow: var(--shadow-subtle);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
+}
+
+.editorial-card:hover {
+  border-color: var(--accent-gold);
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-4px);
+}
+
+.editorial-card-dark {
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--bg-dark-border);
+  color: var(--text-dark-primary);
+  box-shadow: var(--shadow-dark-card);
+}
+
+.editorial-card-dark:hover {
+  border-color: var(--accent-gold);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), var(--shadow-gold-glow);
+}
+
+/* Editorial Corner Marks */
+.corner-marked {
+  position: relative;
+}
+
+.corner-marked::before,
+.corner-marked::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--accent-gold);
+  pointer-events: none;
+}
+
+.corner-marked::before {
+  top: 6px;
+  left: 6px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+}
+
+.corner-marked::after {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+}
+
+/* --------------------------------------------------------------------------
+   Filter Tabs
+   -------------------------------------------------------------------------- */
+.editorial-tab-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-editorial);
+  padding-bottom: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.editorial-tab {
+  background: none;
+  border: none;
+  font-family: var(--font-mono-code);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.editorial-tab:hover {
+  color: var(--ink-primary);
+}
+
+.editorial-tab.active {
+  color: var(--ink-primary);
+  font-weight: 700;
+}
+
+.editorial-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -0.85rem;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-gold);
+}
+
+/* --------------------------------------------------------------------------
+   AI Assistant Sandbox Interactive Component
+   -------------------------------------------------------------------------- */
+.ai-interactive-panel {
+  background-color: #0E131F;
+  border: 1px solid var(--bg-dark-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+.ai-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background-color: #080B12;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ai-panel-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.ai-panel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.ai-panel-dot.red { background-color: #FF5F56; }
+.ai-panel-dot.yellow { background-color: #FFBD2E; }
+.ai-panel-dot.green { background-color: #27C93F; }
+
+.ai-mode-pill {
+  font-family: var(--font-mono-code);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(197, 160, 89, 0.15);
+  color: var(--accent-gold);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: var(--radius-full);
+}
+
+.ai-terminal-body {
+  padding: 1.5rem;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-family: var(--font-sans-body);
+}
+
+.ai-message {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.ai-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-family: var(--font-serif-accent);
+  flex-shrink: 0;
+}
+
+.ai-avatar.user {
+  background-color: #26334F;
+  color: #E2E8F0;
+}
+
+.ai-avatar.bot {
+  background: linear-gradient(135deg, var(--accent-gold) 0%, #8E6843 100%);
+  color: #0A0E17;
+  font-weight: bold;
+}
+
+.ai-bubble {
+  background-color: #141C2E;
+  padding: 0.9rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-dark-secondary);
+  max-width: 90%;
+}
+
+.ai-bubble.user {
+  background-color: #1A253A;
+  border-color: rgba(197, 160, 89, 0.2);
+  color: #FAF6F0;
+}
+
+.ai-prompt-bar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  background-color: #0B0E17;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ai-input {
+  flex: 1;
+  background-color: #131A29;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-sans-body);
+  font-size: 0.88rem;
+  border-radius: var(--radius-xs);
+  outline: none;
+  transition: border-color var(--transition-fast);
+}
+
+.ai-input:focus {
+  border-color: var(--accent-gold);
+}
+
+/* --------------------------------------------------------------------------
+   Interactive Modal / Dossier Preview
+   -------------------------------------------------------------------------- */
+.editorial-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(10, 14, 23, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-smooth);
+}
+
+.editorial-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.editorial-modal-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--accent-gold);
+  width: 100%;
+  max-width: 860px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 2.5rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  transform: translateY(20px);
+  transition: transform var(--transition-smooth);
+}
+
+.editorial-modal-backdrop.active .editorial-modal-box {
+  transform: translateY(0);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: none;
+  border: 1px solid var(--border-editorial);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+  background-color: var(--ink-primary);
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   Toast Feedback Notification
+   -------------------------------------------------------------------------- */
+.editorial-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: var(--ink-primary);
+  color: var(--bg-primary);
+  border: 1px solid var(--accent-gold);
+  padding: 1rem 1.5rem;
+  font-family: var(--font-mono-code);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: var(--shadow-lift);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all var(--transition-smooth);
+}
+
+.editorial-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
